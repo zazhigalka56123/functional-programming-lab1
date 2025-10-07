@@ -107,3 +107,21 @@
     (->> all-sequences
          (map util/product)
          (apply max))))
+
+; ============== 6. Подход на основе трансформации данных (матриц) ==============
+(defn solve-transformed
+  [grid]
+  (let [len 4
+        grid-v (apply mapv vector grid)
+        h (count grid)
+        w (count (first grid))
+        diagonals (concat
+                   (for [i (range (- h (dec len))) j (range (- w (dec len)))]
+                     (vec (for [k (range len)] (get-in grid [(+ i k) (+ j k)]))))
+                   (for [i (range (- h (dec len))) j (range (dec len) w)]
+                     (vec (for [k (range len)] (get-in grid [(+ i k) (- j k)])))))]
+    (apply max
+           (map util/product
+                (lazy-cat (get-horizontal-sequences grid len)
+                          (get-horizontal-sequences grid-v len)
+                          diagonals)))))

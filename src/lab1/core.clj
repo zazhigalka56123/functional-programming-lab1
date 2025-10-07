@@ -42,6 +42,7 @@
     (println "3. Модульная:" (check-result euler11-java-result (euler11/solve-modular euler11-grid)))
     (println "4. Цикл (loop/recur):" (check-result euler11-java-result (euler11/solve-loop euler11-grid)))
     (println "5. Ленивые последовательности:" (check-result euler11-java-result (euler11/solve-lazy euler11-grid)))
+    (println "6. Транспонирование матрицы:" (check-result euler11-java-result (euler11/solve-transformed euler11-grid)))
 
     (println "\n========================================")
     (println "ЗАДАЧА 19 (Подсчет воскресений)")
